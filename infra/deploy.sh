@@ -26,3 +26,6 @@ S3_BUCKET_IMAGE=$(getResourcePhysical "ImageBucket")
 
 # deploy the web serivce on vercel
 "${DIR}/../node_modules/.bin/vercel" deploy --prod --regions ${VERCEL_REGION} -e S3_BUCKET_IMAGE="${S3_BUCKET_IMAGE}" -e APP_AWS_REGION="${APP_AWS_REGION}" -e APP_AWS_ACCESS_KEY="${APP_AWS_ACCESS_KEY}" -e APP_AWS_ACCESS_SECRET="${APP_AWS_ACCESS_SECRET}"
+
+# delete unaliased deploys
+"${DIR}/../node_modules/.bin/vercel" rm -s -y localstack-s3-demo
