@@ -19,7 +19,7 @@ function getResourcePhysical {
 # grab AWS credentials for setting on vercel
 eval $(node -r esm "${DIR}/prod_env.js")
 
-# create or upte the stack, if needed
+# create or update the stack, if needed
 aws cloudformation create-stack --stack-name ${STACK} --template-body "file://${DIR}/cloudformation.yml" > /dev/null 2> /dev/null || aws cloudformation update-stack --stack-name ${STACK} --template-body "file://${DIR}/cloudformation.yml" > /dev/null 2> /dev/null
 
 S3_BUCKET_IMAGE=$(getResourcePhysical "ImageBucket")
