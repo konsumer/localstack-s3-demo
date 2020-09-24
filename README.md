@@ -14,5 +14,3 @@ npm i          # install local tools
 npm start      # run a development-server
 npm run deploy # deploy on vercel
 ```
-
-You can edit local environment-variables in `.env` and on deploy settings will be pushed to vercel.
