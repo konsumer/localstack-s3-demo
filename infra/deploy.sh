@@ -16,7 +16,7 @@ function getResourcePhysical {
   aws cloudformation list-stack-resources --stack-name "${STACK}" | "${DIR}/../node_modules/.bin/jqn" 'mapValues(filter(n => n.LogicalResourceId === "'${1}'")) | get(["StackResourceSummaries", 0, "PhysicalResourceId"])'
 }
 
-# grab AWS credentials for setting on vercel
+# grab AWS credentials for setting on vercel from aws-sdk
 eval $(node -r esm "${DIR}/prod_env.js")
 
 # create or update the stack, if needed

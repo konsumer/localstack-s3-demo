@@ -9,8 +9,7 @@
     "aws-sdk": "^2.759.0",
     "next": "^9.5.3",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-s3-uploader": "^4.9.3"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "esm": "^3.2.25",

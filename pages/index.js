@@ -1,30 +1,33 @@
+/* global fetch, FileReader */
 import React from 'react'
-import ReactS3Uploader from 'react-s3-uploader'
 
-function getSignedUrl (file, callback) {
-  window.fetch('/api', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ Key: file.name, ContentType: file.type }) })
-    .then(r => r.text())
-    .then(signedUrl => {
-      console.log(`Got signed URL: ${signedUrl}`)
-      callback({ signedUrl })
-    })
+const getSignedUrl = file => fetch('/api', {
+  method: 'POST',
+  body: JSON.stringify({ Key: file.name, ContentType: file.type }),
+  headers: { 'content-type': 'application/json' }
+}).then(r => r.text())
+
+const readFile = file => new Promise((resolve, reject) => {
+  const reader = new FileReader()
+  reader.onload = e => resolve(e.target.result)
+  reader.readAsDataURL(file)
+})
+
+const handleSubmit = async e => {
+  e.preventDefault()
+  for (const file of e.target.file.files) {
+    const signedUrl = await getSignedUrl(file)
+    const r = await fetch(signedUrl, { method: 'PUT', body: await readFile(file) })
+    console.log(r)
+  }
 }
 
 const PageIndex = () => {
-  const onProgress = (percent, message, file) => console.log(`Progress (${percent}%): ${message}`)
-  const onError = console.error
-  const onFinish = (...args) => console.log('FINISH', args)
   return (
-    <div>
-      <p>Choose an image to upload:</p>
-      <ReactS3Uploader
-        getSignedUrl={getSignedUrl}
-        accept='image/*'
-        onProgress={onProgress}
-        onError={onError}
-        onFinish={onFinish}
-      />
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input type='file' name='file' />
+      <button type='submit'>upload</button>
+    </form>
   )
 }
 

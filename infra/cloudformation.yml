@@ -16,5 +16,6 @@ Resources:
               - PUT
               - DELETE
               - HEAD
+              - OPTIONS
             AllowedHeaders: 
               - "*"

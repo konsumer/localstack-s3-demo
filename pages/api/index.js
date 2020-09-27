@@ -20,13 +20,13 @@ const getUploadUrl = (params) => new Promise((resolve, reject) => {
   })
 })
 
+// return pre-signed URL for a Key
 export default async (req, res) => {
   if (req.method === 'POST') {
-    const { ContentType, Key } = req.body
+    const { ContentType = 'application/octet-stream', Key } = req.body
     const s3Params = {
       Bucket: S3_BUCKET_IMAGE,
       Key,
-      Expires: 60,
       ContentType,
       ACL: 'public-read'
     }
