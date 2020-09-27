@@ -17,7 +17,7 @@ const handleSubmit = async e => {
   e.preventDefault()
   for (const file of e.target.file.files) {
     const signedUrl = await getSignedUrl(file)
-    const r = await fetch(signedUrl, { method: 'PUT', body: await readFile(file) })
+    const r = await fetch(signedUrl, { method: 'PUT', body: file })
     console.log(r)
   }
 }
