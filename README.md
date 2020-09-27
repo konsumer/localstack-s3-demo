@@ -1,7 +1,5 @@
 # locastack-s3-demo
 
-This is signed-url S3 uploader. It's deployed [here](https://localstack-s3-demo.vercel.app/).
-
 
 ## development
 
