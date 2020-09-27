@@ -8,7 +8,8 @@ AWS.config.update({
   endpoint: AWS_ENDPOINT,
   region: APP_AWS_REGION,
   accessKeyId: APP_AWS_ACCESS_KEY,
-  secretAccessKey: APP_AWS_ACCESS_SECRET
+  secretAccessKey: APP_AWS_ACCESS_SECRET,
+  s3ForcePathStyle: true
 })
 
 const s3 = new AWS.S3()

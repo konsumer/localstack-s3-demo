@@ -39,7 +39,9 @@ const PageIndex = () => {
       <input type='file' name='file' />
       <button type='submit'>upload</button>
       {errors.map((error, e) => (<div key={e} style={{ color: 'red' }}>{error}</div>))}
-      {images.map((image, i) => <img key={i} src={image} />)}
+      <div>
+        {images.map((image, i) => <img key={i} src={image} />)}
+      </div>
     </form>
   )
 }
